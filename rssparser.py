@@ -3,21 +3,29 @@ import csv
 import os
 
 #Deletes the csv file so no duplicates
-os.remove("rss_data.csv")
+try:
+    os.remove("rss_data.csv")
+except OSError:
+    pass
 
 rss_feed_urls = [
     "https://nyaa.si/?page=rss&u=Ember_Encodes",
     "https://nyaa.si/?page=rss&u=subsplease"
-]
+    ]
+
+kw = ["1080p", "Sousou no Frieren"]
 
 #Function to get feed data
 def fetch_rss_data(url):
     global feed
     feed = feedparser.parse(url)
-    print(f"Feed Title: feed.feed.title")
+    print(f"Feed Title: {feed.feed.title}")
     #Loops through every entry then prints them
     for entry in feed.entries:
-        print(f"Title: {entry.title} \n\nTorrent Link: {entry.link} \n\nEntry Link: {entry.guid} \n\nPublished Date: {entry.published} \n\n----------------------------------\n\n")
+        if all(match in entry.title for match in kw):
+            print(f"Title: {entry.title} \n\nTorrent Link: {entry.link} \n\nEntry Link: {entry.guid} \n\nPublished Date: {entry.published} \n\n----------------------------------\n\n")
+        else:
+            pass
 
 def to_csv():
     #Prepares the CSV file
