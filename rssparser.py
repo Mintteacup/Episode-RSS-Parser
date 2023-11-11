@@ -14,7 +14,7 @@ rss_feed_urls = [
     ]
 
 quality = "1080p"
-title = ["Jujutsu Kaisen", "Sousou no Frieren", "Undead Unluck", "Dr. Stone"]
+title = ["Jujutsu Kaisen", "Sousou no Frieren", "Undead Unluck", "Dr. Stone", "Kusuriya no Hitorigoto"]
 
 #Function to get feed data
 def fetch_rss_data(url):
