@@ -10,11 +10,11 @@ except OSError:
 
 rss_feed_urls = [
     "https://nyaa.si/?page=rss&u=Ember_Encodes",
-    "https://nyaa.si/?page=rss&u=subsplease"
+    #"https://nyaa.si/?page=rss&u=subsplease"
     ]
 
 quality = "1080p"
-title = ["Jujutsu Kaisen", "Sousou no Frieren"]
+title = ["Jujutsu Kaisen", "Sousou no Frieren", "Undead Unluck", "Dr. Stone"]
 
 #Function to get feed data
 def fetch_rss_data(url):
@@ -34,7 +34,7 @@ def to_csv():
     with open("rss_data.csv", mode="a", newline='', encoding='utf-8') as csv_file:
         fieldnames = ["Title", "Torrent Link", "Entry Link", "Published", "Summary"]
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-        writer.writeheader()
+        #writer.writeheader()
         #Iterates through entries and write to the CSV file
         for entry in feed.entries:
             if all(match in entry.title for match in quality):
