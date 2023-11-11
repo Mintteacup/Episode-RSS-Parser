@@ -13,7 +13,8 @@ rss_feed_urls = [
     "https://nyaa.si/?page=rss&u=subsplease"
     ]
 
-kw = ["1080p", "Sousou no Frieren"]
+quality = "1080p"
+title = ["Jujutsu Kaisen", "Sousou no Frieren"]
 
 #Function to get feed data
 def fetch_rss_data(url):
@@ -22,8 +23,9 @@ def fetch_rss_data(url):
     print(f"Feed Title: {feed.feed.title}")
     #Loops through every entry then prints them
     for entry in feed.entries:
-        if all(match in entry.title for match in kw):
-            print(f"Title: {entry.title} \n\nTorrent Link: {entry.link} \n\nEntry Link: {entry.guid} \n\nPublished Date: {entry.published} \n\n----------------------------------\n\n")
+        if all(match in entry.title for match in quality):
+            if any(match in entry.title for match in title):
+                print(f"Title: {entry.title} \n\nTorrent Link: {entry.link} \n\nEntry Link: {entry.guid} \n\nPublished Date: {entry.published} \n\n----------------------------------\n\n")
         else:
             pass
 
