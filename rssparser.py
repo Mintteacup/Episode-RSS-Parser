@@ -37,7 +37,11 @@ def to_csv():
         writer.writeheader()
         #Iterates through entries and write to the CSV file
         for entry in feed.entries:
-            writer.writerow({"Title": entry.title, "Torrent Link": entry.link, "Entry Link": entry.guid, "Published": entry.published, "Summary": entry.summary})
+            if all(match in entry.title for match in quality):
+                if any(match in entry.title for match in title):
+                    writer.writerow({"Title": entry.title, "Torrent Link": entry.link, "Entry Link": entry.guid, "Published": entry.published, "Summary": entry.summary})
+            else:
+                pass
 
 for url in rss_feed_urls:
     fetch_rss_data(url)
