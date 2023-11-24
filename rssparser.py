@@ -10,7 +10,7 @@ except OSError:
 
 rss_feed_urls = [
     "https://nyaa.si/?page=rss&u=Ember_Encodes",
-    #"https://nyaa.si/?page=rss&u=subsplease"
+    "https://nyaa.si/?page=rss&u=subsplease"
     ]
 
 quality = "1080p"
@@ -23,7 +23,7 @@ def fetch_rss_data(url):
     print(f"Feed Title: {feed.feed.title}")
     #Loops through every entry then prints them
     for entry in feed.entries:
-        if all(match in entry.title for match in quality):
+        if quality in entry.title:
             if any(match in entry.title for match in title):
                 print(f"Title: {entry.title} \n\nTorrent Link: {entry.link} \n\nEntry Link: {entry.guid} \n\nPublished Date: {entry.published} \n\n----------------------------------\n\n")
         else:
@@ -37,7 +37,7 @@ def to_csv():
         #writer.writeheader()
         #Iterates through entries and write to the CSV file
         for entry in feed.entries:
-            if all(match in entry.title for match in quality):
+            if quality in entry.title:
                 if any(match in entry.title for match in title):
                     writer.writerow({"Title": entry.title, "Torrent Link": entry.link, "Entry Link": entry.guid, "Published": entry.published, "Summary": entry.summary})
             else:
