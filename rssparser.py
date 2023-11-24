@@ -35,7 +35,7 @@ def write_to_csv(entries, file_path, quality, title):
 def main():
     rss_feed_urls = [
         "https://nyaa.si/?page=rss&u=Ember_Encodes",
-        "https://nyaa.si/?page=rss&u=subsplease"
+        #"https://nyaa.si/?page=rss&u=subsplease"
     ]
 
     quality = "1080p"
