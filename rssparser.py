@@ -49,4 +49,5 @@ def main():
         entries = fetch_rss_data(url, quality, title)
         write_to_csv(entries, csv_file_path, quality, title)
 
-main()
+if __name__ == "__main__":
+    main()
